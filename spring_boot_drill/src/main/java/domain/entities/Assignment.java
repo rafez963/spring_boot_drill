@@ -8,20 +8,22 @@ import java.time.LocalDate;
 @Entity
 @Setter
 @Getter
-@Builder
-@AllArgsConstructor
 @NoArgsConstructor
-public class Enrrollments {
+@AllArgsConstructor
+@Builder
+public class Assignment {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(length = 100, nullable = false)
+    private String title;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Userentity userId;
-
-    private Long courseId;
+    @Column(columnDefinition = "TEXT")
+    private String description;
 
     @Builder.Default
     private LocalDate date = LocalDate.now();
 
+    private Long lessonId;
 }

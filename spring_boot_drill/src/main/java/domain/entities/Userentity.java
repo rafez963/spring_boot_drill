@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.*;
 import utils.enums.RoleUser;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity(name = "user")
 @Getter
 @Setter
@@ -24,5 +27,13 @@ public class Userentity {
     private String fullName;
     @Column(nullable = false)
     private RoleUser rol;
+
+    @OneToMany(
+            mappedBy = "userId",
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            orphanRemoval = false
+    )
+    private List<Enrrollments> enrrollments;
 
 }
