@@ -30,7 +30,7 @@ public class Assignment {
     private Lesson lessonId;
 
     @OneToMany(
-            mappedBy = "assigmentId",
+            mappedBy = "assignmentId",
             fetch = FetchType.EAGER,
             cascade = CascadeType.ALL,
             orphanRemoval = false

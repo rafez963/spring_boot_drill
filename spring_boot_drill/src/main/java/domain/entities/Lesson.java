@@ -3,6 +3,8 @@ package domain.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -22,5 +24,13 @@ public class Lesson {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Course courseId;
+
+    @OneToMany(
+            mappedBy = "lessonId",
+            fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL,
+            orphanRemoval = false
+    )
+    private List<Assignment> assignments;
 
 }

@@ -16,9 +16,15 @@ public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long senderId;
-    private Long receiverId;
-    private Long courseId;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Userentity senderId;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Userentity receiverId;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Course courseId;
 
     @Column(nullable = false)
     private String content;

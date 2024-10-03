@@ -16,15 +16,21 @@ public class Userentity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(length = 50, nullable = false)
     private String name;
+
     @Column(nullable = false)
     private String password;
+
     @Column(nullable = false)
     private String email;
+
     @Column(length = 100)
     private String fullName;
+
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private RoleUser rol;
 
     @OneToMany(
@@ -50,4 +56,22 @@ public class Userentity {
             orphanRemoval = false
     )
     private List<Submission> submissions;
+
+    @OneToMany(
+            mappedBy = "senderId",
+            fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL,
+            orphanRemoval = false
+    )
+    private List<Message> messagesSender;
+
+    @OneToMany(
+            mappedBy = "receiverId",
+            fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL,
+            orphanRemoval = false
+    )
+    private List<Message> messagesReceiver;
+
+
 }

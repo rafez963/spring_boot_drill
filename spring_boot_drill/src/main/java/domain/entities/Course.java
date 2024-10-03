@@ -36,7 +36,7 @@ public class Course {
     private List<Enrollment> enrollments;
 
     @OneToMany(
-            mappedBy = "lessonId",
+            mappedBy = "courseId",
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL,
             orphanRemoval = false
@@ -51,6 +51,14 @@ public class Course {
             orphanRemoval = false
     )
     private List<Assignment> assignments;
+
+    @OneToMany(
+            mappedBy = "courseId",
+            fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL,
+            orphanRemoval = false
+    )
+    private List<Message> messages;
 
 
 }

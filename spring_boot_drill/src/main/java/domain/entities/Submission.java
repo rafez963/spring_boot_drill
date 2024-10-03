@@ -29,6 +29,6 @@ public class Submission {
     private Userentity userId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Assignment assigmentId;
+    private Assignment assignmentId;
 
 }
