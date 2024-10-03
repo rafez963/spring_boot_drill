@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Enrrollments {
+public class Enrollment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -19,7 +19,8 @@ public class Enrrollments {
     @ManyToOne(fetch = FetchType.LAZY)
     private Userentity userId;
 
-    private Long courseId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Course courseId;
 
     @Builder.Default
     private LocalDate date = LocalDate.now();

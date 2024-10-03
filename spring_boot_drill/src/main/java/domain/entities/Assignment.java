@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Setter
@@ -25,5 +26,14 @@ public class Assignment {
     @Builder.Default
     private LocalDate date = LocalDate.now();
 
-    private Long lessonId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Lesson lessonId;
+
+    @OneToMany(
+            mappedBy = "assigmentId",
+            fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL,
+            orphanRemoval = false
+    )
+    private List<Submission> submissions;
 }

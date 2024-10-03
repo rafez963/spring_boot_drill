@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 import utils.enums.RoleUser;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "user")
@@ -34,6 +33,21 @@ public class Userentity {
             cascade = CascadeType.ALL,
             orphanRemoval = false
     )
-    private List<Enrrollments> enrrollments;
+    private List<Enrollment> enrollments;
 
+    @OneToMany(
+            mappedBy = "instructorId",
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            orphanRemoval = false
+    )
+    private List<Course> courses;
+
+    @OneToMany(
+            mappedBy = "userId",
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            orphanRemoval = false
+    )
+    private List<Submission> submissions;
 }

@@ -24,7 +24,11 @@ public class Submission {
     private LocalDateTime date = LocalDateTime.now();
     @Column(columnDefinition = "DECIMAL(5,2)")
     private BigDecimal  grade;
-    private Long userId;
-    private Long assigmentId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Userentity userId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Assignment assigmentId;
 
 }

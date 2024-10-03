@@ -3,6 +3,8 @@ package domain.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -21,6 +23,34 @@ public class Course {
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    private Long instructorId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Userentity instructorId;
+
+    @OneToMany(
+            mappedBy = "courseId",
+            fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL,
+            orphanRemoval = false
+
+    )
+    private List<Enrollment> enrollments;
+
+    @OneToMany(
+            mappedBy = "lessonId",
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            orphanRemoval = false
+
+    )
+    private List<Lesson> lessons;
+
+    @OneToMany(
+            mappedBy = "assignmentId",
+            fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL,
+            orphanRemoval = false
+    )
+    private List<Assignment> assignments;
+
 
 }

@@ -20,6 +20,7 @@ public class Lesson {
     @Column(columnDefinition = "TEXT")
     private String content;
 
-    private Long courseId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Course courseId;
 
 }
