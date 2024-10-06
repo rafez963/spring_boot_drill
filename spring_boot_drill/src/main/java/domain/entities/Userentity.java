@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import utils.enums.RoleUser;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "user")
@@ -39,7 +40,8 @@ public class Userentity {
             cascade = CascadeType.ALL,
             orphanRemoval = false
     )
-    private List<Enrollment> enrollments;
+    @Builder.Default
+    private List<Enrollment> enrollments = new ArrayList<>();
 
     @OneToMany(
             mappedBy = "instructorId",
@@ -47,7 +49,8 @@ public class Userentity {
             cascade = CascadeType.ALL,
             orphanRemoval = false
     )
-    private List<Course> courses;
+    @Builder.Default
+    private List<Course> courses = new ArrayList<>();
 
     @OneToMany(
             mappedBy = "userId",
@@ -55,7 +58,8 @@ public class Userentity {
             cascade = CascadeType.ALL,
             orphanRemoval = false
     )
-    private List<Submission> submissions;
+    @Builder.Default
+    private List<Submission> submissions = new ArrayList<>();
 
     @OneToMany(
             mappedBy = "senderId",
@@ -63,7 +67,8 @@ public class Userentity {
             cascade = CascadeType.ALL,
             orphanRemoval = false
     )
-    private List<Message> messagesSender;
+    @Builder.Default
+    private List<Message> messagesSender = new ArrayList<>();
 
     @OneToMany(
             mappedBy = "receiverId",
@@ -71,7 +76,8 @@ public class Userentity {
             cascade = CascadeType.ALL,
             orphanRemoval = false
     )
-    private List<Message> messagesReceiver;
+    @Builder.Default
+    private List<Message> messagesReceiver = new ArrayList<>();
 
 
 }
